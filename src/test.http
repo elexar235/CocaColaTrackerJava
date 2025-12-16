@@ -1,11 +1,12 @@
-POST http://localhost:8080/users
+POST http://localhost:8080/achievements
 Content-Type: application/json
 
 {
-  "username": "",
-  "email": ""
+  "name": "Novice Drinker",
+  "description": "Drink your first cola",
+  "points": 10
 }
 
 ###
 
-GET http://localhost:8080/users
+GET http://localhost:8080/achievements
