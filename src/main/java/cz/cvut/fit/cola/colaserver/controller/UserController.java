@@ -3,6 +3,7 @@ package cz.cvut.fit.cola.colaserver.controller;
 import cz.cvut.fit.cola.colaserver.entity.User;
 import cz.cvut.fit.cola.colaserver.repository.UserRepository;
 import cz.cvut.fit.cola.colaserver.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User create(@RequestBody User user)
+    public User create(@RequestBody @Valid User user)
     {
         return userService.create(user);
     }

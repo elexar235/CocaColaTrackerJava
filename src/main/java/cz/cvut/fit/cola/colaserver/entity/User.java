@@ -1,6 +1,8 @@
 package cz.cvut.fit.cola.colaserver.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +20,12 @@ public class User {
     private Long id;
 
     @Column (nullable = false, unique = true) // uniq name
+    @NotBlank(message = "Name cannot be blank.") // checks whether username is blank
     private String username;
 
     @Column(nullable = false)
+    @NotBlank(message = "Email is necessary.")
+    @Email(message = "Doesn't look like an email.") // checks whether it has @ and .
     private String email;
 
     public User(String username, String email) {
