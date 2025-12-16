@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Getter
@@ -15,6 +15,16 @@ import java.util.Objects;
 @NoArgsConstructor
 @Table(name = "users")
 public class User {
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_achievements",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "achievement_id")
+    )
+
+    private List<Achievement> achievements = new ArrayList<>(); //zdec hibernate peredelyvaet vazbu M:N na pravilnuju (odsuda pojavlajetsa jeste jedna table)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
