@@ -17,6 +17,7 @@ public class ConsumptionController {
 
     @PostMapping
     public String drinkCola(@RequestParam Long userId, @RequestParam Integer amountMl){
+        if (amountMl < 330) throw new IllegalArgumentException("Amount must be at least 330, lol, a sip doesn't count");
         consumptionService.addConsumption(userId, amountMl);
         return "Consumption has been added to the Cola";
     }
