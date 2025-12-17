@@ -1,12 +1,34 @@
-POST http://localhost:8080/achievements
+POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-  "name": "Novice Drinker",
-  "description": "Drink your first cola",
-  "points": 10
+  "username": "DtoMaster",
+  "email": "test@valid.com"
 }
 
 ###
+GET http://localhost:8080/users
 
-GET http://localhost:8080/achievements
+###
+PUT http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+  "username": "RenamedUser",
+  "email": "newemail@cola.cz"
+}
+
+###
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "username": "Hacker",
+  "email": "not-an-email"
+}
+
+###
+POST http://localhost:8080/users/1/achievements/1
+
+###
+DELETE http://localhost:8080/users/1

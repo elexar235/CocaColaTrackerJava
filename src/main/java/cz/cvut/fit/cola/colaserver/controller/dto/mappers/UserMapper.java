@@ -1,5 +1,6 @@
 package cz.cvut.fit.cola.colaserver.controller.dto.mappers;
 
+import cz.cvut.fit.cola.colaserver.controller.dto.UserCreateDto;
 import cz.cvut.fit.cola.colaserver.controller.dto.UserDto;
 import cz.cvut.fit.cola.colaserver.entity.Achievement;
 import cz.cvut.fit.cola.colaserver.entity.User;

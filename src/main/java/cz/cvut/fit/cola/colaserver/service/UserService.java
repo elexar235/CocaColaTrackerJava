@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 public class UserService {
-    private final UserRepository userRepository; // final doesn't let anyone change the repo after service creation
+    private final UserRepository userRepository;
     private final AchievementRepository achievementRepository;
 
-    public UserService(UserRepository userRepository,  AchievementRepository achievementRepository) {
-        this.userRepository = userRepository; // IoC (Inversion Of Control)
+    public UserService(UserRepository userRepository, AchievementRepository achievementRepository) {
+        this.userRepository = userRepository;
         this.achievementRepository = achievementRepository;
     }
 
@@ -22,16 +22,34 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+    }
+
     public User create(User user) {
         return userRepository.save(user);
     }
 
-    public User addAchievement(Long userId, Long achievementId) {
-        User user =  userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public User update(Long id, User userDetails) {
+        User user = findById(id); 
+        
+        user.setUsername(userDetails.getUsername());
+        user.setEmail(userDetails.getEmail());
+        
+        return userRepository.save(user);
+    }
 
+    public void delete(Long id) {
+        User user = findById(id); 
+        userRepository.delete(user);
+    }
+
+    public User addAchievement(Long userId, Long achievementId) {
+        User user = findById(userId);
+        
         Achievement achievement = achievementRepository.findById(achievementId)
-                .orElseThrow(() -> new RuntimeException("Achievement not found"));
+                .orElseThrow(() -> new RuntimeException("Achievement not found with id: " + achievementId));
 
         user.getAchievements().add(achievement);
 
