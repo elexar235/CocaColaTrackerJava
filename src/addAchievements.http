@@ -1,0 +1,14 @@
+POST http://localhost:8080/achievements
+Content-Type: application/json
+
+{
+  "name": "Sugar Rush",
+  "description": "Too much sugar",
+  "points": 50
+}
+
+###
+POST http://localhost:8080/users/1/achievements/1
+
+###
+POST http://localhost:8080/users/1/achievements/2

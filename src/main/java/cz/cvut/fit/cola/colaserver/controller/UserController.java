@@ -28,4 +28,10 @@ public class UserController {
     {
         return userService.create(user);
     }
+
+    @PostMapping("/{userId}/achievements/{achievementId}")
+    public User addAchievementToUser(@PathVariable Long userId, @PathVariable Long achievementId)
+    {
+        return userService.addAchievement(userId, achievementId);
+    }
 }
