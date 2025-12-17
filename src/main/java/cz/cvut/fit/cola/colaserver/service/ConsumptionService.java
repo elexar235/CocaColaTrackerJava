@@ -9,6 +9,8 @@ import cz.cvut.fit.cola.colaserver.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class ConsumptionService {
     private final ConsumptionRepository consumptionRepository;
@@ -27,6 +29,9 @@ public class ConsumptionService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Consumption consumption = new Consumption();
+        consumption.setUser(user);
+        consumption.setAmountMl(amountMl);
+        consumption.setCreatedAt(LocalDateTime.now());
         consumptionRepository.save(consumption);
 
         checkAchievements(user);
