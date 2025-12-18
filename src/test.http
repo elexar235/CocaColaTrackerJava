@@ -32,3 +32,54 @@ POST http://localhost:8080/users/1/achievements/1
 
 ###
 DELETE http://localhost:8080/users/1
+
+###
+
+DELETE http://localhost:8080/achievements/1
+
+###
+DELETE http://localhost:8080/achievements/4
+
+###
+
+POST http://localhost:8080/achievements
+Content-Type: application/json
+
+{
+  "name": "Novice Drinker",
+  "description": "Drink your first cola!",
+  "points": 10,
+  "requiredConsumptions": 1
+}
+
+###
+
+POST http://localhost:8080/achievements
+Content-Type: application/json
+
+{
+  "name": "Average cola enjoyer",
+  "description": "Pop a least 5 colas!",
+  "points": 50,
+  "requiredConsumptions": 5
+}
+###
+
+POST http://localhost:8080/achievements
+Content-Type: application/json
+
+{
+  "name": "Diabetes is loading...lol",
+  "description": "Drink 10 colas!",
+  "points": 100,
+  "requiredConsumptions": 10
+}
+
+###
+POST http://localhost:8080/consumptions
+Content-Type: application/json
+
+{
+  "userId": 14,
+  "amountMl": 500
+}

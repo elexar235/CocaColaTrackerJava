@@ -63,10 +63,10 @@ public class ConsumptionService {
             assignAchievement(user, "Novice Drinker");
         }
         if (totalDrinks == 5) {
-            assignAchievement(user, "Sugar Rush");
+            assignAchievement(user, "Average cola enjoyer");
         }
         if (totalDrinks == 10) {
-            assignAchievement(user, "Diabetes loading...lol");
+            assignAchievement(user, "Diabetes is loading...lol");
         }
     }
 

@@ -3,7 +3,35 @@ const API_URL = 'http://localhost:8080';
 document.addEventListener('DOMContentLoaded', () => {
     loadUsers();
     loadLeaderboard();
+    loadAchievements();
 });
+
+// ... forms ...
+
+async function loadAchievements() {
+    const list = document.getElementById('achievementsList');
+    list.innerHTML = '<p>Loading...</p>';
+
+    try {
+        const res = await fetch(`${API_URL}/achievements`);
+        const achievement = await res.json();
+
+        if (achievement.length === 0) {
+            list.innerHTML = '<p>No achievements defined yet.</p>';
+            return;
+        }
+
+        list.innerHTML = achievement.map(a => `
+            <div class="user-item" style="border: 1px solid #fbbf24;">
+                <h3 style="color: #fbbf24;">🏅 ${a.name}</h3>
+                <p>${a.description || 'No description'}</p>
+                <small>Required Drinks: ${a.requiredConsumptions || 'N/A'}</small>
+            </div>
+        `).join('');
+    } catch (err) {
+        list.innerHTML = '<p class="error">Failed to load achievements</p>';
+    }
+}
 
 document.getElementById('addUserForm').addEventListener('submit', async (e) => {
     e.preventDefault();

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
+    java.util.List<User> findAllByAchievementsContains(cz.cvut.fit.cola.colaserver.entity.Achievement achievement);
 }

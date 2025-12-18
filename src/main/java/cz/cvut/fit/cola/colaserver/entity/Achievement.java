@@ -23,6 +23,9 @@ public class Achievement {
     private String description;
 
     private Integer points;
+    
+    @Column(name = "required_consumptions")
+    private Integer requiredConsumptions;
 
     public Achievement (String name, String description, Integer points) {
         this.name = name;

@@ -12,15 +12,18 @@ public class AchievementMapper {
                 achievement.getId(),
                 achievement.getName(),
                 achievement.getDescription(),
-                achievement.getPoints()
+                achievement.getPoints(),
+                achievement.getRequiredConsumptions()
         );
     }
 
     public Achievement toEntity(AchievementCreateDto dto) {
-        return new Achievement(
+        Achievement achievement = new Achievement(
                 dto.getName(),
                 dto.getDescription(),
                 dto.getPoints()
         );
+        achievement.setRequiredConsumptions(dto.getRequiredConsumptions());
+        return achievement;
     }
 }
