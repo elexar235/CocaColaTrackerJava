@@ -24,6 +24,9 @@ public class User {
     )
 
     private List<Achievement> achievements = new ArrayList<>(); //zdec hibernate peredelyvaet vazbu M:N na pravilnuju (odsuda pojavlajetsa jeste jedna table)
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Consumption> consumptions = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
