@@ -1,12 +1,10 @@
 const API_URL = 'http://localhost:8080';
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     loadUsers();
     loadLeaderboard();
 });
 
-// Forms
 document.getElementById('addUserForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = {
@@ -57,7 +55,6 @@ document.getElementById('addConsumptionForm').addEventListener('submit', async (
     }
 });
 
-// Loaders
 async function loadUsers() {
     const list = document.getElementById('usersList');
     list.innerHTML = '<p>Loading...</p>';
