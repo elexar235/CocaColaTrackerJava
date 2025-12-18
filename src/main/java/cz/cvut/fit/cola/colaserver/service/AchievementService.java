@@ -21,4 +21,24 @@ public class AchievementService {
     public Achievement create(Achievement achievement){
         return achievementRepository.save(achievement);
     }
+
+    public Achievement findById(Long id) {
+        return achievementRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Achievement not found with id: " + id));
+    }
+
+    public Achievement update(Long id, Achievement achievementDetails) {
+        Achievement achievement = findById(id);
+        
+        achievement.setName(achievementDetails.getName());
+        achievement.setDescription(achievementDetails.getDescription());
+        achievement.setPoints(achievementDetails.getPoints());
+        
+        return achievementRepository.save(achievement);
+    }
+
+    public void delete(Long id) {
+        Achievement achievement = findById(id);
+        achievementRepository.delete(achievement);
+    }
 }
