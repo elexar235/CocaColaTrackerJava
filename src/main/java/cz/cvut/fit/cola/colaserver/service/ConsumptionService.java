@@ -40,6 +40,19 @@ public class ConsumptionService {
         return consumption;
     }
 
+    @Transactional
+    public void deleteConsumption(Long id) {
+        if (!consumptionRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Consumption not found with id: " + id);
+        }
+        consumptionRepository.deleteById(id);
+    }
+
+    public java.util.List<Consumption> findAll() {
+        return consumptionRepository.findAll();
+    }
+
+
     public void checkAchievements(User user) {
         long totalDrinks = consumptionRepository.countByUserId(user.getId());
 

@@ -31,4 +31,17 @@ public class ConsumptionController {
         Consumption consumption = consumptionService.addConsumption(createDto.getUserId(), createDto.getAmountMl());
         return consumptionMapper.toDto(consumption);
     }
+
+    @GetMapping
+    public java.util.List<ConsumptionDto> getAllConsumptions() {
+        return consumptionService.findAll().stream()
+                .map(consumptionMapper::toDto)
+                .toList();
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteConsumption(@PathVariable Long id) {
+        consumptionService.deleteConsumption(id);
+    }
 }
