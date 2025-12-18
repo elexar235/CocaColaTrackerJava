@@ -24,7 +24,7 @@ public class ConsumptionService {
     }
 
     @Transactional
-    public void addConsumption(Long userId, Integer amountMl) {
+    public Consumption addConsumption(Long userId, Integer amountMl) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -32,9 +32,11 @@ public class ConsumptionService {
         consumption.setUser(user);
         consumption.setAmountMl(amountMl);
         consumption.setCreatedAt(LocalDateTime.now());
-        consumptionRepository.save(consumption);
+        consumption = consumptionRepository.save(consumption);
 
         checkAchievements(user);
+        
+        return consumption;
     }
 
     public void checkAchievements(User user) {
