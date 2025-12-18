@@ -4,6 +4,7 @@ import cz.cvut.fit.cola.colaserver.entity.Achievement;
 import cz.cvut.fit.cola.colaserver.entity.User;
 import cz.cvut.fit.cola.colaserver.repository.AchievementRepository;
 import cz.cvut.fit.cola.colaserver.repository.UserRepository;
+import cz.cvut.fit.cola.colaserver.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class UserService {
 
     public User findById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
     }
 
     public User create(User user) {
@@ -49,7 +50,7 @@ public class UserService {
         User user = findById(userId);
         
         Achievement achievement = achievementRepository.findById(achievementId)
-                .orElseThrow(() -> new RuntimeException("Achievement not found with id: " + achievementId));
+                .orElseThrow(() -> new ResourceNotFoundException("Achievement not found with id: " + achievementId));
 
         user.getAchievements().add(achievement);
 

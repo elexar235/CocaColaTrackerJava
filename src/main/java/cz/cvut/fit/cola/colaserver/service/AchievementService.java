@@ -2,6 +2,7 @@ package cz.cvut.fit.cola.colaserver.service;
 
 import cz.cvut.fit.cola.colaserver.entity.Achievement;
 import cz.cvut.fit.cola.colaserver.repository.AchievementRepository;
+import cz.cvut.fit.cola.colaserver.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class AchievementService {
 
     public Achievement findById(Long id) {
         return achievementRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Achievement not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Achievement not found with id: " + id));
     }
 
     public Achievement update(Long id, Achievement achievementDetails) {

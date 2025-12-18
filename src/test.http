@@ -10,7 +10,7 @@ Content-Type: application/json
 GET http://localhost:8080/users
 
 ###
-PUT http://localhost:8080/users/1
+PUT http://localhost:8080/users/100
 Content-Type: application/json
 
 {

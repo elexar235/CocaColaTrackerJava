@@ -6,6 +6,7 @@ import cz.cvut.fit.cola.colaserver.entity.User;
 import cz.cvut.fit.cola.colaserver.repository.AchievementRepository;
 import cz.cvut.fit.cola.colaserver.repository.ConsumptionRepository;
 import cz.cvut.fit.cola.colaserver.repository.UserRepository;
+import cz.cvut.fit.cola.colaserver.exception.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class ConsumptionService {
     @Transactional
     public Consumption addConsumption(Long userId, Integer amountMl) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Consumption consumption = new Consumption();
         consumption.setUser(user);
