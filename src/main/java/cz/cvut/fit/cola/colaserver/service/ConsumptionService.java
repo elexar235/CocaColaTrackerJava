@@ -52,6 +52,9 @@ public class ConsumptionService {
         return consumptionRepository.findAll();
     }
 
+    public java.util.List<cz.cvut.fit.cola.colaserver.controller.dto.UserStatsDto> getTopDrinkers() {
+        return consumptionRepository.findTopDrinkers();
+    }
 
     public void checkAchievements(User user) {
         long totalDrinks = consumptionRepository.countByUserId(user.getId());

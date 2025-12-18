@@ -44,4 +44,9 @@ public class ConsumptionController {
     public void deleteConsumption(@PathVariable Long id) {
         consumptionService.deleteConsumption(id);
     }
+
+    @GetMapping("/stats/leaderboard")
+    public java.util.List<cz.cvut.fit.cola.colaserver.controller.dto.UserStatsDto> getLeaderboard() {
+        return consumptionService.getTopDrinkers();
+    }
 }
