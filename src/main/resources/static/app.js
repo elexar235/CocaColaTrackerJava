@@ -51,7 +51,8 @@ document.getElementById('addUserForm').addEventListener('submit', async (e) => {
             document.getElementById('addUserForm').reset();
             loadUsers();
         } else {
-            alert('Error creating user');
+            const errorMsg = await response.text();
+            alert(errorMsg || 'Error creating user');
         }
     } catch (err) {
         console.error(err);
@@ -76,7 +77,8 @@ document.getElementById('addConsumptionForm').addEventListener('submit', async (
             document.getElementById('addConsumptionForm').reset();
             loadLeaderboard();
         } else {
-            alert('Error adding drink (User ID might be wrong)');
+            const errorMsg = await response.text();
+            alert(errorMsg || 'Error adding drink');
         }
     } catch (err) {
         console.error(err);
